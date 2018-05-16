@@ -12,8 +12,8 @@
     "build:esm": "rollup -c config/rollup.config.esm.js",
     "build:umd": "rollup -c config/rollup.config.umd.js",
     "build": "npm run clean && npm run build:self && npm run build:esm &&  npm run build:umd",
-    "test": "npm run eslint && mocha -R spec --compilers js:babel-register",
-    "release": "npm test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags"
+    "test": "npm run lint && mocha -R spec --compilers js:babel-register",
+    "release": "npm run test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags"
   },
   "author": "zcorky",
   "license": "MIT",
