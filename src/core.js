@@ -91,6 +91,9 @@ export default class Movable {
     this.state.currentX = clientX;
     this.state.currentY = clientY;
     this.state.movable = true;
+    
+    setStyle(this.$container, 'width', width);
+    setStyle(this.$container, 'height', height);
   };
 
   onMouseUp = () => {

@@ -13,5 +13,8 @@ export function $(selector) {
  * @param {number | string} value 
  */
 export function setStyle($node, name, value) {
-  $node.style[name] = typeof value === 'number' ? `${value}px` : value; // eslint-disable-line
+  const rValue = typeof value === 'number' ? `${value}px` : value;
+  if (($node.style[name]) === rValue) return false;
+  
+  $node.style[name] = rValue; // eslint-disable-line
 }
