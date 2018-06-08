@@ -57,6 +57,8 @@ export default class Movable {
     setStyle(this.$container, 'position', 'absolute');
     // @2 make handler cusor move
     setStyle(this.$handler, 'cursor', 'move');
+    // @3 box-sizing for width/height
+    setStyle(this.$container, 'box-sizing', 'border-box');
   }
 
   on() {
