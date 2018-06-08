@@ -1,6 +1,6 @@
 {
   "name": "@zcorky/movable",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Enable the element movable anywhere.",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.esm.js",
@@ -43,5 +43,8 @@
   },
   "dependencies": {
     "babel-runtime": "6.26.0"
-  }
+  },
+  "files": [
+    "lib"
+  ]
 }
