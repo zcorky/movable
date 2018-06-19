@@ -25,6 +25,7 @@ export default class Movable {
       handler = '.handler',
       container = '.container',
       boundable = false,
+      fixed = false,
     } = options;
 
     this.$handler = $(handler);
@@ -34,6 +35,7 @@ export default class Movable {
     assert(this.$container, `${container} element should be mounted first.`);
 
     this.state = {
+      fixed,
       boundable,
       movable: false,
       currentX: 0,
@@ -54,7 +56,7 @@ export default class Movable {
    */
   styledMembers() {
     // @1 make container absolute
-    setStyle(this.$container, 'position', 'absolute');
+    setStyle(this.$container, 'position', !this.state.fixed ? 'absolute' : 'fixed');
     // @2 make handler cusor move
     setStyle(this.$handler, 'cursor', 'move');
     // @3 box-sizing for width/height
