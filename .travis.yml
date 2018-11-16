@@ -6,8 +6,12 @@ node_js:
 jobs:
   include:
     - stage: deploy
+      before_script:
+        - git config --global user.name 'whatwewant'
+        - git config --global user.email 'tobewhatwewant@gmail.com'
+        - git clone --branch gh-pages https://github.com/${TRAVIS_REPO_SLUG} gh-pages
       script:
-        - echo "build for deploy"
+        - echo "build for deploy gh-pages"
         - npm run build
       deploy:
         # deploy to gh-pages
@@ -18,6 +22,12 @@ jobs:
           script: bash scripts/deploy.sh
           on:
             tags: true
+    
+    - stage: deploy
+      script:
+        - echo "build for deploy npm"
+        - npm run build
+      deploy:
         # deploy to npm === npm publish
         - provider: npm
           skip_cleanup: true
