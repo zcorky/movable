@@ -18,11 +18,11 @@ jobs:
         # deploy to gh-pages
         # Need env
         #   GITHUB_TOKEN
-        provider: script
-        skip_cleanup: true
-        script: bash scripts/deploy.sh
-        on:
-          tags: true
+        - provider: script
+          skip_cleanup: true
+          script: bash scripts/deploy.sh
+          on:
+            tags: true
     
     - stage: deploy
       script:
@@ -30,9 +30,9 @@ jobs:
         - npm run build
       deploy:
         # deploy to npm === npm publish
-        provider: npm
-        email: uniquecolesmith@gmail.com
-        skip_cleanup: true
-        api_key: $NPM_AUTH_TOKEN
-        on:
-          tags: true
+        - provider: npm
+          email: uniquecolesmith@gmail.com
+          skip_cleanup: true
+          api_key: $NPM_AUTH_TOKEN
+          on:
+            tags: true
