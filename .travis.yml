@@ -31,7 +31,7 @@ jobs:
       deploy:
         # deploy to npm === npm publish
         - provider: npm
-          email: tobewhatwewant@gmail.com
+          email: uniquecolesmith@gmail.com
           skip_cleanup: true
           api_key: $NPM_AUTH_TOKEN
           on:
