@@ -9,9 +9,9 @@ jobs:
       before_script:
         - git config --global user.name 'whatwewant'
         - git config --global user.email 'tobewhatwewant@gmail.com'
-        - git clone --branch gh-pages https://github.com/${TRAVIS_REPO_SLUG} gh-pages
+        - git clone --branch gh-pages https://github.com/$TRAVIS_REPO_SLUG gh-pages
       script:
-        - echo "current repo: ${TRAVIS_REPO_SLUG} tag: ${TRAVIS_TAG}"
+        - echo "current repo: $TRAVIS_REPO_SLUG tag: $TRAVIS_TAG"
         - echo "build for deploy gh-pages"
         - npm run build
       deploy:
