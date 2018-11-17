@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "deploy to gh-pages."
+echo "current repo: $TRAVIS_REPO_SLUG tag: $TRAVIS_TAG"
 
 cp -rf lib gh-pages
 cp -rf example/* gh-pages
