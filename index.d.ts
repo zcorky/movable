@@ -5,7 +5,7 @@ export interface Options {
   fixed?: boolean;
 }
 
-export class Movable {
+class Movable {
   constructor(options: Options);
 
   static version: string;

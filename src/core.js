@@ -13,7 +13,7 @@ const passiveOptions = isSupportPassive() ? {
 } : false;
 
 export default class Movable {
-  static version = '0.0.8';
+  static version = '0.0.9';
 
   /**
    * Constructor
