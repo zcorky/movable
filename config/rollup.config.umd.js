@@ -18,6 +18,7 @@ export default {
     // legacy: true,
     name,
     banner,
+    // exports: 'named',
   },
   plugins: [
     nodeResolve({

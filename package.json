@@ -1,6 +1,6 @@
 {
   "name": "@zcorky/movable",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Enable the element movable anywhere.",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.esm.js",
@@ -8,13 +8,14 @@
   "scripts": {
     "clean": "rm -rf ./lib",
     "lint": "eslint src",
+    "copy": "cp -rf lib example",
     "build:self": "rollup -c config/rollup.config.js",
     "build:esm": "rollup -c config/rollup.config.esm.js",
     "build:umd": "rollup -c config/rollup.config.umd.js",
-    "build": "npm run clean && npm run build:self && npm run build:esm &&  npm run build:umd",
+    "build": "npm run clean && npm run build:self && npm run build:esm &&  npm run build:umd && npm run copy",
     "test": "npm run lint && mocha -R spec --compilers js:babel-register",
     "release": "npm run test && git commit -am $npm_package_version && git tag $npm_package_version && git push origin master && git push --tags",
-    "deploy": "npm run build && cp -rf lib example && gh-pages -d example"
+    "deploy": "npm run build && gh-pages -d example"
   },
   "author": "zcorky",
   "license": "MIT",

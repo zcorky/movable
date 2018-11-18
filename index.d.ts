@@ -7,6 +7,8 @@ export interface Options {
 
 export class Movable {
   constructor(options: Options);
+
+  static version: string;
 }
 
 export default Movable;
