@@ -7,7 +7,7 @@ import {
 } from './utils/index';
 
 export default class Movable {
-  static version = '1.0.0';
+  static version = '1.0.3';
 
   /**
    * Constructor
