@@ -84,6 +84,9 @@ export default class Movable {
   on() {
     this.styledMembers();
 
+    // @0 on resize
+    addEvents(window, ['resize'], this.onResize);
+
     // @1 mouse down on handler
     addEvents(this.$handler, ['mousedown', 'touchstart'], this.onMouseDown, passiveOptions);
 
@@ -92,6 +95,21 @@ export default class Movable {
 
     // @3 mouse move on documnent
     addEvents(document, ['mousemove', 'touchmove'], this.onMouseMove, passiveOptions);
+  }
+
+  onResize = () => {
+    const { x, y, width, height } = this.$container.getBoundingClientRect();
+    
+    this.state.innerWidth = window.innerWidth;
+    this.state.innerHeight = window.innerHeight;
+    this.state.originX = x - this.state.deltaX;
+    this.state.originY = y - this.state.deltaY;
+    this.state.width = width;
+    this.state.height = height;
+    this.state.mouseDeltaX = 0;
+    this.state.mouseDeltaY = 0;
+
+    console.log('resize: ', this.state);
   }
 
   onMouseDown = (event) => {
