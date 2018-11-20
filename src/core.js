@@ -2,7 +2,6 @@ import {
   isSupportPassive,
   assert,
   $,
-  setStyle,
   setStyles,
   getClientXY,
   addEvents,
@@ -73,7 +72,10 @@ export default class Movable {
    */
   styledMembers() {
     // @1 make handler cusor move
-    setStyle(this.$handler, 'cursor', 'move');
+    setStyles(this.$handler, {
+      cursor: 'move',
+      userSelect: 'none',
+    });
   }
 
   on() {
