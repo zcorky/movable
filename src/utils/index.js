@@ -1,5 +1,5 @@
 import isSupportPassive from './isSupportPassive';
-import { $, setStyle } from './dom';
+import { $, setStyle, setStyles } from './dom';
 import assert from './assert';
 import { addEvents } from './event';
 import getClientXY from './getClientXY';
@@ -9,6 +9,7 @@ export {
   assert,
   $,
   setStyle,
+  setStyles,
   addEvents,
   getClientXY,
 };

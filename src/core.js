@@ -3,6 +3,7 @@ import {
   assert,
   $,
   setStyle,
+  setStyles,
   getClientXY,
   addEvents,
 } from './utils/index';
@@ -108,8 +109,6 @@ export default class Movable {
     this.state.height = height;
     this.state.mouseDeltaX = 0;
     this.state.mouseDeltaY = 0;
-
-    console.log('resize: ', this.state);
   }
 
   onMouseDown = (event) => {
@@ -202,6 +201,12 @@ export default class Movable {
     
     
     // console.log('pos: ', currentDeltaX, currentDeltaY);
-    setStyle(this.$container, 'transform', `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`);
+    setStyles(this.$container, {
+      '-webkit-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
+      '-moz-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
+      '-o-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
+      'transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
+    });
+    // setStyle(this.$container, 'transform', `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`);
   };
 }
