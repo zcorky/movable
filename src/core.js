@@ -61,10 +61,6 @@ export default class Movable {
       deltaY: 0,
       mouseDeltaX: 0,
       mouseDeltaY: 0,
-      // top: 0,
-      // left: 0,
-      // maxLeft: 0,
-      // maxTop: 0,
     };
 
     this.on();
@@ -76,12 +72,8 @@ export default class Movable {
    *   2 make handler cursor as move
    */
   styledMembers() {
-    // @1 make container absolute
-    // setStyle(this.$container, 'position', !this.state.fixed ? 'absolute' : 'fixed');
-    // @2 make handler cusor move
+    // @1 make handler cusor move
     setStyle(this.$handler, 'cursor', 'move');
-    // @3 box-sizing for width/height
-    // setStyle(this.$container, 'box-sizing', 'border-box');
   }
 
   on() {
@@ -114,35 +106,15 @@ export default class Movable {
   }
 
   onMouseDown = (event) => {
-    // const {
-    //   top,
-    //   left,
-    //   width,
-    //   height,
-    // } = this.$container.getBoundingClientRect();
-
     const { clientX, clientY } = getClientXY(event);
 
-    // this.state.top = top;
-    // this.state.left = left;
-    // this.state.width = width;
-    // this.state.height = height;
-    // this.state.maxLeft = window.innerWidth - width;
-    // this.state.maxTop = window.innerHeight - height;
     this.state.currentX = clientX;
     this.state.currentY = clientY;
     this.state.movable = true;
-    // console.log('mouse down in');
-    // console.log('mouse down: ', this.state);
-    
-    // setStyle(this.$container, 'width', width);
-    // setStyle(this.$container, 'height', height);
   };
 
   onMouseUp = () => {
     if (this.state.movable) {
-      // console.log('mouse up in');
-      // console.log('mouse up: ', this.state);
       this.state.movable = false;
       this.state.deltaX += this.state.mouseDeltaX;
       this.state.deltaY += this.state.mouseDeltaY;
@@ -156,8 +128,6 @@ export default class Movable {
 
   onMouseMove = (event) => {
     if (!this.state.movable) return false;
-    // console.log('mouse move in');
-    // console.log('mouse move: ', this.state);
 
     const { clientX, clientY } = getClientXY(event);
 
@@ -166,25 +136,6 @@ export default class Movable {
     
     this.state.mouseDeltaX = mouseDeltaX;
     this.state.mouseDeltaY = mouseDeltaY;
-    // let left = this.state.left + mouseDeltaX;
-    // let top = this.state.top + mouseDeltaY;
-
-    // if (this.state.boundable) {
-    //   if (left < 0) { // on left side
-    //     left = 0;
-    //   } else if (left > this.state.maxLeft) { // on right side
-    //     left = this.state.maxLeft;
-    //   }
-
-    //   if (top < 0) {
-    //     top = 0;
-    //   } else if (top > this.state.maxTop) {
-    //     top = this.state.maxTop;
-    //   }
-    // }
-
-    // setStyle(this.$container, 'top', top);
-    // setStyle(this.$container, 'left', left);
 
     let currentDeltaX = this.state.deltaX + mouseDeltaX;
     let currentDeltaY = this.state.deltaY + mouseDeltaY;
@@ -201,8 +152,6 @@ export default class Movable {
       } else if (innerWidth < originX + width + currentDeltaX) {
         // right
         currentDeltaX = innerWidth - (originX + width);
-        // this.state.mouseDeltaX = 0;
-        // this.state.mouseDeltaY = 0;
         this.boundaried = true;
         this.state.mouseDeltaX = innerWidth - originX - width - this.state.deltaX;
       }
@@ -212,28 +161,19 @@ export default class Movable {
         currentDeltaY = -originY;
         this.boundaried = true;
         this.state.mouseDeltaY = - originY - this.state.deltaY;
-        // this.state.mouseDeltaX = 0;
-        // this.state.mouseDeltaY = 0;
       } else if (innerHeight < originY + height + currentDeltaY) {
         // bottom
         currentDeltaY = innerHeight - (originY + height);
         this.boundaried = true;
         this.state.mouseDeltaY = innerHeight - originY - height - this.state.deltaY;
-        // this.state.mouseDeltaX = 0;
-        // this.state.mouseDeltaY = 0;
       }
     }
     
-    
-    // console.log('pos: ', mouseDeltaX, this.state.deltaX, currentDeltaX);
-    // console.log('delta: ', this.state.deltaX, this.state.deltaY);
-    // console.log('current: ', currentDeltaX, currentDeltaY);
     setStyles(this.$container, {
       '-webkit-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
       '-moz-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
       '-o-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
       'transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
     });
-    // setStyle(this.$container, 'transform', `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`);
   };
 }
