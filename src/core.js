@@ -48,6 +48,7 @@ export default class Movable {
       fixed,
       boundable,
       movable: false,
+      boundaried: false,
       originX: x,
       originY: y,
       width,
@@ -101,7 +102,7 @@ export default class Movable {
 
   onResize = () => {
     const { x, y, width, height } = this.$container.getBoundingClientRect();
-    
+    console.log('resize');
     this.state.innerWidth = window.innerWidth;
     this.state.innerHeight = window.innerHeight;
     this.state.originX = x - this.state.deltaX;
@@ -131,6 +132,7 @@ export default class Movable {
     this.state.currentX = clientX;
     this.state.currentY = clientY;
     this.state.movable = true;
+    // console.log('mouse down in');
     // console.log('mouse down: ', this.state);
     
     // setStyle(this.$container, 'width', width);
@@ -139,11 +141,13 @@ export default class Movable {
 
   onMouseUp = () => {
     if (this.state.movable) {
+      // console.log('mouse up in');
       // console.log('mouse up: ', this.state);
       this.state.movable = false;
       this.state.deltaX += this.state.mouseDeltaX;
       this.state.deltaY += this.state.mouseDeltaY;
 
+      console.log('reset mouse delta');
       // reset mouse delta
       this.state.mouseDeltaX = 0;
       this.state.mouseDeltaY = 0;
@@ -152,6 +156,7 @@ export default class Movable {
 
   onMouseMove = (event) => {
     if (!this.state.movable) return false;
+    // console.log('mouse move in');
     // console.log('mouse move: ', this.state);
 
     const { clientX, clientY } = getClientXY(event);
@@ -190,24 +195,39 @@ export default class Movable {
       if (originX + currentDeltaX < 0) {
         // left
         currentDeltaX = -originX;
+        // found boundary
+        this.boundaried = true;
+        this.state.mouseDeltaX = - originX - this.state.deltaX;
       } else if (innerWidth < originX + width + currentDeltaX) {
         // right
         currentDeltaX = innerWidth - (originX + width);
+        // this.state.mouseDeltaX = 0;
+        // this.state.mouseDeltaY = 0;
+        this.boundaried = true;
+        this.state.mouseDeltaX = innerWidth - originX - width - this.state.deltaX;
       }
 
       if (originY + currentDeltaY < 0) {
         // top
         currentDeltaY = -originY;
+        this.boundaried = true;
+        this.state.mouseDeltaY = - originY - this.state.deltaY;
+        // this.state.mouseDeltaX = 0;
+        // this.state.mouseDeltaY = 0;
       } else if (innerHeight < originY + height + currentDeltaY) {
         // bottom
         currentDeltaY = innerHeight - (originY + height);
+        this.boundaried = true;
+        this.state.mouseDeltaY = innerHeight - originY - height - this.state.deltaY;
+        // this.state.mouseDeltaX = 0;
+        // this.state.mouseDeltaY = 0;
       }
     }
     
     
-    // console.log('pos: ', currentDeltaX, currentDeltaY);
-    console.log('delta: ', this.state.deltaX, this.state.deltaY);
-    console.log('current: ', currentDeltaX, currentDeltaY);
+    // console.log('pos: ', mouseDeltaX, this.state.deltaX, currentDeltaX);
+    // console.log('delta: ', this.state.deltaX, this.state.deltaY);
+    // console.log('current: ', currentDeltaX, currentDeltaY);
     setStyles(this.$container, {
       '-webkit-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
       '-moz-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
