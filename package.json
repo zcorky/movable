@@ -1,6 +1,6 @@
 {
   "name": "@zcorky/movable",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "Enable the element movable anywhere.",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.esm.js",
