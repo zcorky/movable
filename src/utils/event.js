@@ -6,6 +6,6 @@ const NOOP = () => null;
  * @param {array} names 
  * @param {function} handler 
  */
-export function addEvent($node, names = [], handler = NOOP) {
-  names.forEach(name => $node.addEventListener(name, handler));
+export function addEvents($node, names = [], handler = NOOP, options) {
+  names.forEach(name => $node.addEventListener(name, handler, options));
 }

@@ -18,3 +18,10 @@ export function setStyle($node, name, value) {
   
   $node.style[name] = rValue; // eslint-disable-line
 }
+
+
+export function setStyles($node, styles) {
+  Object.keys(styles).forEach(key => {
+    setStyle($node, key, styles[key]);
+  });
+}
