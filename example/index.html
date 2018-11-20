@@ -135,16 +135,23 @@
     }
     .rect {
       position: absolute;
-      top: 100px;
-      left: 100px;
+      top: 200px;
+      left: 200px;
       width: 100px;
       height: 100px;
       background-color: red;
+    }
+
+    .relative {
+      width: 100px;
+      height: 100px;
+      background-color: purple;
     }
   </style>
 </head>
 <body>
   <div class="rect"></div>
+  <div class="relative"></div>
   <div class="box">
     <header>
       <img class="avatar" src="https://avatars1.githubusercontent.com/u/7463687?s=460&v=4" />
@@ -178,7 +185,11 @@
 
   new movable({
     handler: '.rect',
-    container: '.rect',
+    boundable: true,
+  });
+
+  new movable({
+    handler: '.relative',
     boundable: true,
   });
 </script>
