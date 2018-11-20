@@ -13,7 +13,7 @@ const passiveOptions = isSupportPassive() ? {
 } : false;
 
 export default class Movable {
-  static version = '0.0.9';
+  static version = '1.0.0';
 
   /**
    * Constructor
@@ -96,7 +96,7 @@ export default class Movable {
 
   onResize = () => {
     const { x, y, width, height } = this.$container.getBoundingClientRect();
-    console.log('resize');
+
     this.state.innerWidth = window.innerWidth;
     this.state.innerHeight = window.innerHeight;
     this.state.originX = x - this.state.deltaX;
@@ -121,7 +121,6 @@ export default class Movable {
       this.state.deltaX += this.state.mouseDeltaX;
       this.state.deltaY += this.state.mouseDeltaY;
 
-      console.log('reset mouse delta');
       // reset mouse delta
       this.state.mouseDeltaX = 0;
       this.state.mouseDeltaY = 0;
