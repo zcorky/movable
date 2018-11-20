@@ -1,16 +1,10 @@
 import {
-  isSupportPassive,
   assert,
   $,
   setStyles,
   getClientXY,
   addEvents,
 } from './utils/index';
-
-const passiveOptions = isSupportPassive() ? {
-  passive: true,
-  capture: false,
-} : false;
 
 export default class Movable {
   static version = '1.0.0';
@@ -85,13 +79,13 @@ export default class Movable {
     addEvents(window, ['resize'], this.onResize);
 
     // @1 mouse down on handler
-    addEvents(this.$handler, ['mousedown', 'touchstart'], this.onMouseDown, passiveOptions);
+    addEvents(this.$handler, ['mousedown', 'touchstart'], this.onMouseDown);
 
     // @2 mouse up on document
-    addEvents(document, ['mouseup', 'touchend', 'touchcancel'], this.onMouseUp, passiveOptions);
+    addEvents(document, ['mouseup', 'touchend', 'touchcancel'], this.onMouseUp);
 
     // @3 mouse move on documnent
-    addEvents(document, ['mousemove', 'touchmove'], this.onMouseMove, passiveOptions);
+    addEvents(document, ['mousemove', 'touchmove'], this.onMouseMove);
   }
 
   onResize = () => {
