@@ -25,17 +25,18 @@ export default class Movable {
    */
   constructor(options = {}) {
     const {
-      handler = '.handler',
-      container = '.container',
       boundable = false,
       fixed = false,
     } = options;
 
-    this.$handler = $(handler);
-    this.$container = $(container) || this.$handler;
+    const handlerSelector = options.handler || '.handler';
+    const containerSelector = options.container; // donot set default value
 
-    assert(this.$handler, `${handler} element should be mounted first.`);
-    assert(this.$container, `${container} element should be mounted first.`);
+    this.$handler = $(handlerSelector);
+    this.$container = containerSelector ? $(containerSelector) || this.$handler : this.$handler;
+
+    assert(this.$handler, `${handlerSelector} element should be mounted first.`);
+    assert(this.$container, `${containerSelector} element should be mounted first.`);
 
     const {
       x, y,
@@ -142,6 +143,10 @@ export default class Movable {
       this.state.movable = false;
       this.state.deltaX += this.state.mouseDeltaX;
       this.state.deltaY += this.state.mouseDeltaY;
+
+      // reset mouse delta
+      this.state.mouseDeltaX = 0;
+      this.state.mouseDeltaY = 0;
     }
   };
 
@@ -201,6 +206,8 @@ export default class Movable {
     
     
     // console.log('pos: ', currentDeltaX, currentDeltaY);
+    console.log('delta: ', this.state.deltaX, this.state.deltaY);
+    console.log('current: ', currentDeltaX, currentDeltaY);
     setStyles(this.$container, {
       '-webkit-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,
       '-moz-transform': `translate3d(${currentDeltaX}px, ${currentDeltaY}px, 0px)`,

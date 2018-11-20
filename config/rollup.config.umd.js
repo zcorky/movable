@@ -33,8 +33,8 @@ export default {
     }),
     uglify({
       compress: {
-        drop_console: true,
-        pure_funcs: ['console.log'],
+        // drop_console: true,
+        // pure_funcs: ['console.log'],
       },
       ie8: false,
     }),

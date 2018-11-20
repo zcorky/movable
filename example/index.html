@@ -170,15 +170,16 @@
 </body>
 <script src="./lib/index.umd.js"></script>
 <script>
-  new movable({
-    handler: '.handler',
-    container: '.box',
-    boundable: true,
-  });
-
   // new movable({
-  //   handler: '.rect',
+  //   handler: '.handler',
+  //   container: '.box',
   //   boundable: true,
   // });
+
+  new movable({
+    handler: '.rect',
+    container: '.rect',
+    boundable: true,
+  });
 </script>
 </html>
