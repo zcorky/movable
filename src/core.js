@@ -27,7 +27,7 @@ export default class Movable {
 
     this.$handler = $(handlerSelector);
     this.$container = containerSelector ? $(containerSelector) || this.$handler : this.$handler;
-  
+
     assert(this.$handler, `${handlerSelector} element should be mounted first.`);
     assert(this.$container, `${containerSelector} element should be mounted first.`);
 
@@ -86,9 +86,6 @@ export default class Movable {
 
     // @3 mouse move on documnent
     addEvents(document, ['mousemove', 'touchmove'], this.onMouseMove);
-
-    // @4 mouse up on handler
-    addEvents(this.$handler, ['mouseleave', 'mouseup', 'touchend', 'touchcancel'], this.onMouseUp);
   }
 
   onResize = () => {
